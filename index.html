@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="/scripts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap"
+      rel="stylesheet"
+    />
+    <title>Tax Calculator</title>
+  </head>
+  <body>
+    <h1>Tax Calculator</h1>
+
+    <div class="container">
+      <div class="flex-col">
+        <label>Input Your Income:</label><br />
+
+        <div class="input_fields_wrap">
+          <div class="flex-row">
+            <label>฿</label><input type="text" class="amount" id="income" />
+          </div>
+        </div>
+        <br />
+        <button class="add_field_button">add</button>
+        <br />
+
+        <input
+          class="calBtn"
+          type="button"
+          value="Calculate"
+          name="calculate"
+          id="calculate"
+        />
+      </div>
+      <br /><br />
+
+      <div class="flex-col">
+        <label>Total Income:</label>
+        <div class="flex-row">
+          <label>฿</label><span type="text" id="totalIncome"></span>
+          <br /><br />
+        </div>
+
+        <label>Tax rate:</label>
+        <div class="flex-row">
+          <span type="text" id="taxRate"></span><label>%</label> <br /><br />
+        </div>
+
+        <label>Tax:</label>
+        <div class="flex-row">
+          <label>฿</label><span type="text" id="taxIncome"></span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  $(document).ready(function () {
+    var max_fields = 3;
+    var wrapper = $(".input_fields_wrap");
+    var add_button = $(".add_field_button");
+    var x = 1;
+    $(add_button).click(function (e) {
+      e.preventDefault();
+      if (x < max_fields) {
+        x++;
+        $(wrapper).append(
+          '<div class="input_fields_wrap"><div class="flex-row"><label>฿</label><input type="text" class="amount" id="income" /><button class="remove_field">del</button></div></div>'
+        ); //add input box
+      }
+    });
+    $(wrapper).on("click", ".remove_field", function (e) {
+      e.preventDefault();
+      $(this).parent("div").remove();
+      x--;
+    });
+  });
+</script>
